@@ -4,6 +4,20 @@ import ReactDOM from "react-dom";
 import "./styles.css";
 import { DataSet } from "./data";
 
+class Color extends React.Component {
+  render() {
+    var v = this.props.value;
+    return (
+      <Field
+        id="field-variance"
+        label="Różnica"
+        value={v}
+        style={{ color: v >= 0 ? "blue" : "red" }}
+      />
+    );
+  }
+}
+
 function Field(props) {
   //console.log(props);
   var { label, value, editable, onChange, ...props } = props;
@@ -25,17 +39,17 @@ function Field(props) {
   );
 }
 
-function VarienceField(props) {
-  var v = props.value;
-  return (
-    <Field
-      id="field-variance"
-      label="Różnica"
-      value={v}
-      style={{ color: v >= 0 ? "green" : "red" }}
-    />
-  );
-}
+// function VarienceField(props) {
+//   var v = props.value;
+//   return (
+//     <Field
+//       id="field-variance"
+//       label="Różnica"
+//       value={v}
+//       style={{ color: v >= 0 ? "green" : "red" }}
+//     />
+//   );
+// }
 
 function Station(props) {
   var { station, onChange } = props;
@@ -52,7 +66,7 @@ function Station(props) {
           editable={true}
           value={station.value}
         />
-        <VarienceField value={station.value - station.expected} />
+        <Color value={station.value - station.expected} />
       </ul>
     </div>
   );
